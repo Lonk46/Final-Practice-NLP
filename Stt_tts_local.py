@@ -56,7 +56,7 @@ while True:
 
             # Define a unique filename based on current timestamp
             #filename = f"recording_{int(time.time())}.wav"
-            filename ="name_of_audio.wav"
+            filename ="Recorded_audio.wav"
             waveFile = wave.open(filename, 'wb')
             waveFile.setnchannels(CHANNELS)
             waveFile.setsampwidth(audio.get_sample_size(FORMAT))
@@ -79,7 +79,7 @@ audio.terminate()
 
 
 model = whisper.load_model("base")
-result = model.transcribe(r'C:\Users\Casa\Desktop\Procesamiento del lenguaje\Exam_practic_last\name_of_audio.wav')
+result = model.transcribe(r'C:\Users\Casa\Desktop\Procesamiento del lenguaje\Exam_practic_last\Recorded_audio.wav')
 print(f' The text in video: \n {result["text"]}')
 
 
