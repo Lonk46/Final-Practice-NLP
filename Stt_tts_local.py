@@ -3,8 +3,10 @@ import pyaudio
 import wave
 import time
 import whisper
+import pyttsx3
 
 
+# LOCAL SPEECH TO TEXT
 # Audio parameters
 FORMAT = pyaudio.paInt16     # 16-bit resolution
 CHANNELS = 1                 # 1 channel for mono; change to 2 for stereo
@@ -77,5 +79,16 @@ audio.terminate()
 
 
 model = whisper.load_model("base")
-result = model.transcribe(r'C:\Users\Casa\Desktop\Proyecto\name_of_audio.wav')
+result = model.transcribe(r'C:\Users\Casa\Desktop\Procesamiento del lenguaje\Exam_practic_last\name_of_audio.wav')
 print(f' The text in video: \n {result["text"]}')
+
+
+
+#LOCAL TEXT TO SPEECH
+
+
+
+
+engine = pyttsx3.init()
+engine.say(result["text"]) 
+engine.runAndWait() 
