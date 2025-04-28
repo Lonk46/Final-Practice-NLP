@@ -93,8 +93,31 @@ transcript = aai.Transcriber(config=config).transcribe(audio_file)
 if transcript.status == "error":
   raise RuntimeError(f"Transcription failed: {transcript.error}")
 
-print(transcript.text)
+transcribed_text = transcript.text
+print(transcribed_text)
 
 
+# TEXT TO SPEECH API ------------------------------------------------------
+
+from dotenv import load_dotenv
+from elevenlabs.client import ElevenLabs
+from elevenlabs import play
+import os
+load_dotenv()
+#client = ElevenLabs(
+#  api_key=os.getenv("ELEVENLABS_API_KEY"),
+#)
+client = ElevenLabs(
+  api_key="sk_a4885e47e373c030fc07f1adc43ee2718967aa1178dcbb0b",
+)
+
+
+audio = client.text_to_speech.convert(
+    text=transcribed_text,
+    voice_id="NOpBlnGInO9m6vDvFkFC",
+    model_id="eleven_multilingual_v2",
+    output_format="mp3_44100_128",
+)
+play(audio)
 
 
